@@ -1,0 +1,16 @@
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
+metadata:
+  name: gpu-operator
+  namespace: kube-system
+spec:
+  targetNamespace: gpu-operator
+  createNamespace: true
+  repo: https://helm.ngc.nvidia.com/nvidia
+  chart: gpu-operator
+  version: v24.6.2
+  valuesContent: |-
+    toolkit:
+      env:
+      - name: CONTAINERD_SOCKET
+        value: /run/k3s/containerd/containerd.sock
